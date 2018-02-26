@@ -1,0 +1,1 @@
+<strong>Copyright &copy; 2018 <a href="#" class="text-brand-sec">Omene J.O</a>.</strong> All rights reserved.
