@@ -15,14 +15,45 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
+Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
+
+
 Route::get('/admin', function () {
     return view('admin.index');
 });
 
-Route::resource('/admin/staff', 'AdminStaffController');
+Route::get('/bill/{id}', 'AdminPatientsController@payBill');
+// Route::get('/bill/', function(){
+//     return view('bill.index');
+// });
 
-Route::patch('/admin/staff/{id}/update/', 'AdminStaffController@update')->name('admin.staff.update');
-Route::get('/admin/staff/{id}/edit/', 'AdminStaffController@edit')->name('admin.staff.edit');
+
+Route::group( [ 'middleware' => 'auth'], function()
+{
+    // Route::post('/admin/staff/update/{id}', ['as' => 'admin.stpaff.update', 'uses' => 'AdminStaffController@update']);
+Route::resource('/admin/staff', 'AdminStaffController');
+// Route::get('/admin/staff', 'AdminStaffController@index');
+Route::post('/admin/staff/update/', 'AdminStaffController@update')->name('admin.staff.update');
+Route::delete('/admin/staff/delete/', 'AdminStaffController@destroy')->name('admin.staff.delete');
+
+Route::resource('/admin/ward', 'AdminWardController');
+Route::delete('/admin/ward/{id}/delete/', 'AdminWardController@destroy')->name('admin.ward.delete');
+
+Route::resource('/admin/beds', 'AdminBedsController');
+Route::delete('/admin/beds/{id}/delete/', 'AdminBedsController@destroy')->name('admin.beds.delete');
+Route::get('/admin/beds/{id}/', 'AdminBedsController@show')->name('admin.beds.show');
+
+
+Route::get('/admin/patients/{id}/bill', 'AdminPatientsController@bill')->name('admin.patients.bill');
+Route::get('/admin/patients/calcBill', 'AdminPatientsController@calcBill')->name('admin.patients.calcBill');
+Route::get('/admin/patients/patientBill')->name('admin.patients.patientBill');
+Route::get('/admin/patients/patientBill', 'AdminPatientsController@emailBill')->name('admin.patients.emailBill');
+Route::resource('/admin/patients', 'AdminPatientsController');
+Route::get('/admin/patients/{id}', 'AdminPatientsController@show')->name('admin.patients.show');
+Route::get('/admin/patients/update/', 'AdminPatientsController@update')->name('admin.patients.update');
+});
+
 
 
 Auth::routes();

@@ -6,6 +6,7 @@
   <title>Hospital Admin | dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <!-- Bootstrap 3.3.6 -->
   <link href="{{asset('css/all.css')}}" rel="stylesheet">
 
@@ -268,7 +269,7 @@
             </li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul> -->
-          <ul class="treeview-menu">
+          
             
             <li>
               <a href="#"><i class="fa fa-circle-o"></i> Staffs
@@ -289,8 +290,8 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> View Patients </a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Admit Patient </a></li>
+                <li><a href="{{url('admin/patients/')}}"><i class="fa fa-circle-o"></i> View Patients </a></li>
+                <li><a href="{{url('admin/patients/create')}}"><i class="fa fa-circle-o"></i> Admit Patient </a></li>
                 
               </ul>
             </li>
@@ -301,14 +302,15 @@
                 </span>
               </a>
               <ul class="treeview-menu">
-                <li><a href="#"><i class="fa fa-circle-o"></i> Male Ward </a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Female Ward </a></li>
-                <li><a href="#"><i class="fa fa-circle-o"></i> Private Ward </a></li>
+              @foreach($wards as $ward)
+                <li><a href="{{route('admin.beds.show',['id' => $ward->id])}}"><i class="fa fa-circle-o"></i> {{$ward->name}} </a></li>
                 
+               @endforeach 
+               <li><a href="{{url('admin/beds/')}}"><i class="fa fa-circle-o"></i> Manage Beds </a></li>
               </ul>
             </li>
             
-          </ul>
+         
         </li>
 
       </ul>
@@ -548,5 +550,6 @@
 
 <!-- jQuery 2.2.3 -->
 <script src="{{asset('js/all.js')}}"></script>
+<script src="{{asset('js/custom.js')}}"></script>
 </body>
 </html>

@@ -20,12 +20,19 @@ class AdminStaffController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct() 
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         //
         $users = User::all();
+        $roles = Role::all();
+        $depts = Dept::all();
         
-        return view('admin.staff.index', compact('users'));
+        return view('admin.staff.index', compact('users', 'roles', 'depts'));
     }
 
     /**
@@ -131,38 +138,71 @@ class AdminStaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(EditUserRequest $request, $id)
+    public function update(EditUserRequest $request)
     {
           
-        $role = Role::where('id', $request->role_id)->first();
-        if(trim($request->password == '')){
-            $input = $request->except('password');
-            $input['password'] = bcrypt($request->password);
-        } else {
-            $input = $request->all();
-            $input['password'] = bcrypt($request->password);
+        // $role = Role::where('id', $request->role_id)->first();
+        // if(trim($request->password == '')){
+        //     $input = $request->except('password');
+        //     $input['password'] = bcrypt($request->password);
+        // } else {
+        //     $input = $request->all();
+        //     $input['password'] = bcrypt($request->password);
+        // }
+        if($request->hasFile('photo')){
+            return response()->json(['status'=>false,'Description' => 'has file']);
+        }else{
+            return response()->json(['status'=>false,'Description' => 'doesnt']);;
         }
-        
-        
-        if ($file = $request->file('file')){
+      
+        // if($request->ajax()){
+        //     // $input = new \stdClass();
             
-            $name = time() . $file->getClientOriginalName();
+        //     $user = User::findOrFail($request->id);
+
+        //     if(is_null($user)){
+        //         return response()->json(['status'=>false,'Description' => 'User could not be found.']);
+        //     }
+
+        //     $user->name = $request->name;
+        //     $user->email= $request->email;
+
+        //     if($request->highest_qual){
+        //         $user->highest_qual = $request->highest_qual;
+        //     }
+        //     if($request->dept_id){
+        //         $user->dept_id = $request->dept_id;
+        //     }
+              
+        // if ($request->file){
+        //     $file = $request->file;
             
-            $file->move('images', $name);
+        //     $name = time() . $file;
             
-            $photo = Photo::create(['file' => $name, 'user_id'=>Auth::user()->id]);
+        //     move_uploaded_file($name, 'images');
             
-            $input['photo_id'] = $photo->id;
-        }
-  
-        $user = User::findOrFail($id);
+        //     $photo = Photo::create(['file_name' => $name, 'user_id'=>Auth::user()->id]);
+            
+        //     $user['photo_id'] = $photo->id;
+        // }
+           
+            
+        //     $user->update();
+        //     if ($request->role_id){
+        //         $role = Role::where('id', $request->role_id)->first();
+        //         $user->roles()->attach($role);
+        //     }
+        //     return response()->json(['status'=>true,'Description' => 'successful']);
+            
+        // }
        
-        $user->update($input);
-        $user->roles()->attach($role);
+        // $user->update($input);
+        // $user->roles()->attach($role);
         
         
-        Session::flash('message', 'Staff information updated successfully');
-        return redirect(url('/admin/staff'));
+        // Session::flash('message', 'Staff information updated successfully');
+        // return redirect(url('/admin/staff'));
+        
     }
 
     /**
@@ -171,8 +211,21 @@ class AdminStaffController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         //
+        // 
+        if($request->ajax()){
+            User::findOrFail($request->id)->delete();
+            return response()->json(['success'=>'deleted '.$request->id]);
+        }
+    }
+
+    public function ajaxUpdate(EditUserRequest $request, $id){
+        $input = $request->all();
+        $user = User::findOrFail($id);
+        $user->update($input);
+        Session::flash('message', 'Staff information updated successfully');
+        return response()->json(['success'=>'Got Simple Ajax Request.']);
     }
 }

@@ -28,3 +28,7 @@ mix.js(['resources/assets/js/app.js',
     'public/dist/css/AdminLTE.min.css',
     'public/dist/css/skins/_all-skins.min.css',
 ], 'public/css/all.css');
+
+mix.scripts([
+    'public/customJs/myJs.js'
+], 'public/js/custom.js');

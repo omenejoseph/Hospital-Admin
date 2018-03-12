@@ -17,4 +17,8 @@ class Patient extends Model
         'discharged_at',
         'discharge_bill',
     ];
+
+    public function bed(){
+        return $this->belongsTo('App\Bed');
+    }
 }

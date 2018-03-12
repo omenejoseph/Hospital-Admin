@@ -48,10 +48,11 @@
     <div class="form-group">
       {!! Form::submit('submit', ['class'=>'btn btn-primary'])!!}
     </div>
-
+    {!! Form::close() !!}
 
 
   </div>
+  @include('elements.errors')
 </div>
 
 

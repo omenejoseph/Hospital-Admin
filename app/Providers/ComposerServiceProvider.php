@@ -3,25 +3,25 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Ward;
-use Illuminate\Support\Facades\View;
 
-class AppServiceProvider extends ServiceProvider
+class ComposerServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
     public function boot()
     {
         //
-        $wards = Ward::all();
-       View::share('wards', $wards);
+        view()->composer(
+            '*',
+            'App\Http\ViewComposers\WardComposer'
+        );
     }
 
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */
