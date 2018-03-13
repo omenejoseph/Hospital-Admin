@@ -149,6 +149,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Unicodeveloper\Paystack\PaystackServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Cmgmyr\Messenger\MessengerServiceProvider::class,
 
         /*
          * Package Service Providers...

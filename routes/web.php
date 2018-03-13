@@ -55,6 +55,12 @@ Route::get('/admin/patients/patientBill', 'AdminPatientsController@emailBill')->
 Route::resource('/admin/patients', 'AdminPatientsController');
 Route::get('/admin/patients/{id}', 'AdminPatientsController@show')->name('admin.patients.show');
 Route::get('/admin/patients/update/', 'AdminPatientsController@update')->name('admin.patients.update');
+
+    Route::get('/admin/messages/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+    Route::get('/admin/messages/create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+    Route::post('/admin/messages/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+    Route::get('/admin/messages/{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+    Route::put('/admin/messages/{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
 });
 
 

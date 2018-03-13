@@ -43,44 +43,51 @@
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <a href="{{route('messages')}}" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <span class="label label-success">@include('admin.messenger.unread-count')</span>
             </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+             <ul class="dropdown-menu"> 
+              <li class="header">You have @include('admin.messenger.unread-count') messages</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
+                <a href="{{route('messages')}}"><button class="btn btn-small btn-info">View Messages</button></a>
+                <a href="{{route('messages.create')}}"><button class="btn btn-small btn-info">Create Message</button></a>
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="img-circle" alt="User Image">
+                      @if(auth()->user()->photo())
+                        <img src="{{  URL::to('/') }}/images/{{ auth()->user()->photo['file_name']  }}" class="user-image" alt="User Image" />
+                      @else
+                        <img src="{{asset('images/default.png')}}" class="user-image" alt="User Image">
+
+                      @endif
                       </div>
                       <h4>
-                        Support Team
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                        {{auth()->user()->name}}
+                        <small><i class="fa fa-clock-o"></i> </small>
                       </h4>
-                      <p>Why not buy a new awesome theme?</p>
+                      
                     </a>
                   </li>
                   <!-- end message -->
                 </ul>
               </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
+              <!-- <li class="footer"><a href="#">See All Messages</a></li> -->
             </ul>
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
+          <!-- <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">10</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 10 notifications</li>
-              <li>
+              <li> -->
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
+                <!-- <ul class="menu">
                   <li>
                     <a href="#">
                       <i class="fa fa-users text-aqua"></i> 5 new members joined today
@@ -90,20 +97,21 @@
               </li>
               <li class="footer"><a href="#">View all</a></li>
             </ul>
-          </li>
+          </li> -->
           <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
+          <!-- <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
               <span class="label label-danger">9</span>
             </a>
             <ul class="dropdown-menu">
               <li class="header">You have 9 tasks</li>
-              <li>
+              <li> -->
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li><!-- Task item -->
-                    <a href="#">
+                <!-- <ul class="menu"> -->
+                  <!-- <li> -->
+                  <!-- Task item -->
+                    <!-- <a href="#">
                       <h3>
                         Design some buttons
                         <small class="pull-right">20%</small>
@@ -114,15 +122,15 @@
                         </div>
                       </div>
                     </a>
-                  </li>
+                  </li> -->
                   <!-- end task item -->
-                </ul>
+                <!-- </ul>
               </li>
               <li class="footer">
                 <a href="#">View all tasks</a>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -181,9 +189,9 @@
             </ul>
           </li>
           <!-- Control Sidebar Toggle Button -->
-          <li>
+          <!-- <li>
             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </nav>
