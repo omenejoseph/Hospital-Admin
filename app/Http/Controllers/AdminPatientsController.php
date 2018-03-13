@@ -267,6 +267,8 @@ class AdminPatientsController extends Controller
 
         $patient = Patient::findOrFail($id);
 
+        // dd(round($patient->discharge_bill, 2));
+
         return view('bill.index', compact('patient'));
     }
 

@@ -7,21 +7,19 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class InvoiceMail extends Mailable
+class paymentSuccessfulMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $bill;
+    public $patient;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($bill)
+    public function __construct($patient)
     {
         //
-
-        $this->bill = $bill;
-
+        $this->patient = $patient;
     }
 
     /**
@@ -31,11 +29,6 @@ class InvoiceMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Your Bill from Hospital Admin')->markdown('emails.invoice');
-        // ->view('view.name');
-        // ->to(config('mail.from.address'))
-        // ->subject('Your Website Inquiry')
-        // ->view('emails.invoice');
-        // return redirect('/admin/patients');
+        return $this->subject('Your Payment was Successful')->markdown('emails.paymentSuccess');
     }
 }

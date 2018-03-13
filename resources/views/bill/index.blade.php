@@ -1,35 +1,31 @@
-@extends('layouts.login')
+@extends('layouts.app')
 
 @section('content')
-<div class="box">
-  <div class="box-header with-border">
-    
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <!-- <div class="card-header">Register</div> -->
 
-  </div> <!-- /.first box-header end -->
-  <div class="box-body">
-  <div class="row">
-  <div class="col-sm-6 center-block">
+                <div class="card-body">
 <h3>Total Bill for {{$patient->name}} is N{{$patient->discharge_bill}}</h3> 
 
     {!! Form::open(['route' => 'pay', 'method'=>'POST']) !!}
     
-    <input type="hidden" name="amount" value="{{$patient->discharge_bill}}">
+    <input type="hidden" name="amount" value="{{$patient->discharge_bill * 100}}">
     <input type="hidden" name="email" value="{{$patient->email}}">
     <input type="hidden" name="name" value="{{$patient->name}}">
     <input type="hidden" name="id" value="{{$patient->id}}">
+    <input type="hidden" name="patient_id" value="{{$patient->id}}">
     <input type="hidden" name="_token" value="{{csrf_token()}}">
     <input type="hidden" name="reference" value="{{ Paystack::genTranxRef() }}"> {{-- required --}}
     <input type="hidden" name="key" value="{{ config('paystack.secretKey') }}"> {{-- required --}}
     {!! Form::submit('Click Here to Pay', ['class'=>'btn btn-primary'])!!}
     {!! Form::close() !!}
     
-
-     </div>
+              </div>
+            </div>
+        </div>
+    </div>
 </div>
-  </div>
-  <!-- /.box-body -->
-  <div class="box-footer">
-   
-  </div>
-
-@stop
+@endsection
