@@ -148,6 +148,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Unicodeveloper\Paystack\PaystackServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -215,6 +216,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
     ],
 
