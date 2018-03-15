@@ -35,10 +35,13 @@ Route::get('/bill/{id}', 'AdminPatientsController@payBill');
 Route::group( [ 'middleware' => 'auth'], function()
 {
     // Route::post('/admin/staff/update/{id}', ['as' => 'admin.stpaff.update', 'uses' => 'AdminStaffController@update']);
+Route::put('/status/approve/', 'AdminController@approve')->name('status.approve');
+Route::get('admin', 'AdminController@index');
 Route::resource('/admin/staff', 'AdminStaffController');
 // Route::get('/admin/staff', 'AdminStaffController@index');
 Route::post('/admin/staff/update/', 'AdminStaffController@update')->name('admin.staff.update');
 Route::delete('/admin/staff/delete/', 'AdminStaffController@destroy')->name('admin.staff.delete');
+
 
 Route::resource('/admin/ward', 'AdminWardController');
 Route::delete('/admin/ward/{id}/delete/', 'AdminWardController@destroy')->name('admin.ward.delete');
@@ -56,11 +59,11 @@ Route::resource('/admin/patients', 'AdminPatientsController');
 Route::get('/admin/patients/{id}', 'AdminPatientsController@show')->name('admin.patients.show');
 Route::get('/admin/patients/update/', 'AdminPatientsController@update')->name('admin.patients.update');
 
-    Route::get('/admin/messages/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
-    Route::get('/admin/messages/create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
-    Route::post('/admin/messages/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
-    Route::get('/admin/messages/{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
-    Route::put('/admin/messages/{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
+Route::get('/admin/messages/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+Route::get('/admin/messages/create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+Route::post('/admin/messages/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+Route::get('/admin/messages/{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+Route::put('/admin/messages/{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
 });
 
 

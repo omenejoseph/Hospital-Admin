@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Role;
 use App\Dept;
 
-
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Photo;
@@ -28,7 +28,7 @@ class AdminStaffController extends Controller
     public function index()
     {
         //
-        $users = User::all();
+        $users = User::paginate(15);
         $roles = Role::all();
         $depts = Dept::all();
         
@@ -139,62 +139,37 @@ class AdminStaffController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(EditUserRequest $request)
-    {
-          
-        // $role = Role::where('id', $request->role_id)->first();
-        // if(trim($request->password == '')){
-        //     $input = $request->except('password');
-        //     $input['password'] = bcrypt($request->password);
-        // } else {
-        //     $input = $request->all();
-        //     $input['password'] = bcrypt($request->password);
-        // }
-        if($request->hasFile('photo')){
-            return response()->json(['status'=>false,'Description' => 'has file']);
-        }else{
-            return response()->json(['status'=>false,'Description' => 'doesnt']);;
-        }
-      
-        // if($request->ajax()){
-        //     // $input = new \stdClass();
+    {      
+        
+        if($request->ajax()){
+            // $input = new \stdClass();
             
-        //     $user = User::findOrFail($request->id);
+            
+            $user = User::findOrFail($request->id);
+       
+            if(is_null($user)){
+                return response()->json(['status'=>false,'Description' => 'User could not be found.']);
+            }
+            // if(($user)){
+            //     return response()->json(['status'=>false,'Description' => 'User found.']);
+            // }
 
-        //     if(is_null($user)){
-        //         return response()->json(['status'=>false,'Description' => 'User could not be found.']);
-        //     }
-
-        //     $user->name = $request->name;
-        //     $user->email= $request->email;
-
-        //     if($request->highest_qual){
-        //         $user->highest_qual = $request->highest_qual;
-        //     }
-        //     if($request->dept_id){
-        //         $user->dept_id = $request->dept_id;
-        //     }
-              
-        // if ($request->file){
-        //     $file = $request->file;
-            
-        //     $name = time() . $file;
-            
-        //     move_uploaded_file($name, 'images');
-            
-        //     $photo = Photo::create(['file_name' => $name, 'user_id'=>Auth::user()->id]);
-            
-        //     $user['photo_id'] = $photo->id;
-        // }
+            $user->name = $request->name;
+            $user->email= $request->email;
+            $user->highest_qual = $request->highest_qual;
            
+            if($request->dept_id){
+                $user->dept_id = $request->dept_id;
+            }
             
-        //     $user->update();
-        //     if ($request->role_id){
-        //         $role = Role::where('id', $request->role_id)->first();
-        //         $user->roles()->attach($role);
-        //     }
-        //     return response()->json(['status'=>true,'Description' => 'successful']);
+            $user->update();
+            if ($request->role_id){
+                $role = Role::where('id', $request->role_id)->first();
+                $user->roles()->attach($role);
+            }
+            return response()->json(['status'=>true,'Description' => 'successful']);
             
-        // }
+        }
        
         // $user->update($input);
         // $user->roles()->attach($role);
@@ -221,11 +196,5 @@ class AdminStaffController extends Controller
         }
     }
 
-    public function ajaxUpdate(EditUserRequest $request, $id){
-        $input = $request->all();
-        $user = User::findOrFail($id);
-        $user->update($input);
-        Session::flash('message', 'Staff information updated successfully');
-        return response()->json(['success'=>'Got Simple Ajax Request.']);
-    }
+  
 }

@@ -5,11 +5,13 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Hospital Admin | dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <meta name="csrf-token" content="{{ csrf_token() }}">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
   <!-- Bootstrap 3.3.6 -->
   <link href="{{asset('css/all.css')}}" rel="stylesheet">
-
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -246,7 +248,7 @@
         </li>
 
         <li class="treeview">
-          <a href="#">
+          <a href="{{url('admin')}}">
             <i class="fa fa-share"></i> <span>Administration</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -315,6 +317,18 @@
                 
                @endforeach 
                <li><a href="{{url('admin/beds/')}}"><i class="fa fa-circle-o"></i> Manage Beds </a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-circle-o"></i> Messages @include('admin.messenger.unread-count')
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{route('messages')}}"><i class="fa fa-circle-o"></i> View All Messages </a></li>
+                <li><a href="{{route('messages.create')}}"><i class="fa fa-circle-o"></i> Send New Message </a></li>
+                
               </ul>
             </li>
             
@@ -557,7 +571,10 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="{{asset('js/all.js')}}"></script>
-<script src="{{asset('js/custom.js')}}"></script>
+@section('scripts')
+        <!-- App scripts -->
+        <script src="{{asset('js/all.js')}}"></script>
+        <script src="{{asset('js/custom.js')}}"></script>
+        
 </body>
 </html>

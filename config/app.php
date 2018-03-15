@@ -150,6 +150,7 @@ return [
         Unicodeveloper\Paystack\PaystackServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         Cmgmyr\Messenger\MessengerServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -218,6 +219,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
 
     ],
 
