@@ -1,18 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <!-- <div class="card-header">Register</div> -->
+<div class="banner-text text-center">
 
-                <div class="card-body">
-
-                Payment Successful. Thanks for Choosing Us.
-                </div>
-            </div>
-        </div>
-    </div>
+     <h1 class="white">Payment Successful. Thanks for Choosing Us.</h1> 
+       
 </div>
 @endsection

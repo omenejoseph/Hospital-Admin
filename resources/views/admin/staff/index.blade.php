@@ -54,6 +54,7 @@
         <th>email</th>
         <th>Qualification</th>
         <th>Status</th>
+        <th>Role</th>
         <th>Department</th>
         <th>Photo</th>
         <th>Action</th>
@@ -72,7 +73,20 @@
         @else
           <td>Unapproved</td>
         @endif
-        
+        @if($user->hasRole('admin'))
+        <td>Admin</td>
+        @endif
+        @if($user->hasRole('doctor'))
+        <td>Doctor</td>
+        @endif
+        @if($user->hasRole('nurse'))
+        <td>Nurse</td>
+        @endif
+        @if($user->hasRole('employee'))
+        <td>Employee</td>
+        @else
+        <td>notin</td>
+        @endif
         <td>{{$user->dept->name}}</td>
         <td>
         @if($user->photo())
@@ -119,7 +133,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Modal Header</h4>
+            <h4 class="modal-title">Edit User</h4>
         </div>
         <div class="modal-body">
         <form id="edit-user-form" data-parsley-validate="" enctype="multipart/form-data">

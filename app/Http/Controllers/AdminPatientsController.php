@@ -19,6 +19,11 @@ class AdminPatientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('role:admin, doctor, nurse');
+    }
+
     public function index()
     {
         //
@@ -263,14 +268,7 @@ class AdminPatientsController extends Controller
 
     }
 
-    public function payBill($id){
-
-        $patient = Patient::findOrFail($id);
-
-        // dd(round($patient->discharge_bill, 2));
-
-        return view('bill.index', compact('patient'));
-    }
+   
 
 
 

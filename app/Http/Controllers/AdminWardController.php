@@ -10,9 +10,9 @@ use App\Bed;
 class AdminWardController extends Controller
 {
     //
-    public function __construct() 
+    public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('role:admin');
     }
 
     public function index()

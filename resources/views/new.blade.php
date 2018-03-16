@@ -44,10 +44,8 @@
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
               <ul class="nav navbar-nav">
                 <li class="active"><a href="#banner">Home</a></li>
-                @if(auth()->user())
                 @if(! auth()->user()->hasRole('employee'))
-                <li class=""><a href="{{url('admin/')}}">Admin</a></li>
-                @endif
+                <li class="{{url('admin/')}}"><a href="#service">Admin</a></li>
                 @endif
                 <!-- <li class=""><a href="#about">About</a></li>
                 <li class=""><a href="#testimonial">Testimonial</a></li>
@@ -63,9 +61,8 @@
             <div class="banner-logo text-center">
               <img src="{{asset('newAssests/img/logo.png')}}" class="img-responsive">
             </div>
-            
-           
-            @yield('content')
+            <div class="banner-text text-center">
+            @section('content')
             </div>
             <div class="overlay-detail text-center">
               <a href="#service"><i class="fa fa-angle-down"></i></a>

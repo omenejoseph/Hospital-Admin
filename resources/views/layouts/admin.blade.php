@@ -280,7 +280,7 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul> -->
           
-            
+          @if(auth()->user()->hasRole('admin'))
             <li>
               <a href="#"><i class="fa fa-circle-o"></i> Staffs
                 <span class="pull-right-container">
@@ -293,6 +293,7 @@
                 
               </ul>
             </li>
+           @endif
             <li>
               <a href="#"><i class="fa fa-circle-o"></i> Patients
                 <span class="pull-right-container">
@@ -306,6 +307,7 @@
               </ul>
             </li>
             <li>
+            @if(auth()->user()->hasRole('admin'))
               <a href="#"><i class="fa fa-circle-o"></i> Wards
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
@@ -317,7 +319,9 @@
                 
                @endforeach 
                <li><a href="{{url('admin/beds/')}}"><i class="fa fa-circle-o"></i> Manage Beds </a></li>
+               <li><a href="{{url('admin/ward/')}}"><i class="fa fa-circle-o"></i> Add new wards </a></li>
               </ul>
+              @endif
             </li>
             <li>
               <a href="#"><i class="fa fa-circle-o"></i> Messages @include('admin.messenger.unread-count')

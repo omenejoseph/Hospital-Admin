@@ -8,6 +8,12 @@ use App\Ward;
 
 class AdminBedsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('role:admin, doctor');
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -18,6 +18,10 @@ mix.js(['resources/assets/js/app.js',
     'public/plugins/fastclick/fastclick.js',
     'public/dist/js/app.min.js',
     'public/dist/js/demo.js',
+    'public/newAssests/js/jquery.min.js',
+    'public/newAssests/js/jquery.easing.min.js',
+    'public/newAssests/js/bootstrap.min.js',
+    'public/newAssests/js/custom.js',
     ], 'public/js/all.js');
    
 
@@ -27,6 +31,9 @@ mix.js(['resources/assets/js/app.js',
     'public/fonts/ionicons.min.css',
     'public/dist/css/AdminLTE.min.css',
     'public/dist/css/skins/_all-skins.min.css',
+    'public/newAssests/css/font-awesome.min.css',
+    'public/newAssests/css/bootstrap.min.css/',
+    'public/newAssests/css/style.css',
 ], 'public/css/all.css');
 
 mix.scripts([

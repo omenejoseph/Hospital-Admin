@@ -25,8 +25,11 @@ Route::get('/callback', 'SocialAuthFacebookController@callback');
 Route::get('/admin', function () {
     return view('admin.index');
 });
+Route::get('/new', function () {
+    return view('new');
+});
 
-Route::get('/bill/{id}', 'AdminPatientsController@payBill');
+Route::get('/bill/{id}', 'PatientBillController@payBill');
 // Route::get('/bill/', function(){
 //     return view('bill.index');
 // });
