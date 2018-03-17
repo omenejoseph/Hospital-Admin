@@ -151,7 +151,8 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Cmgmyr\Messenger\MessengerServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-
+        Snowfire\Beautymail\BeautymailServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -165,7 +166,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
-        Laracasts\Flash\FlashServiceProvider::class,
+        
 
     ],
 

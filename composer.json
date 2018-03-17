@@ -14,6 +14,7 @@
         "laravel/socialite": "^3.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.4.0",
+        "snowfire/beautymail": "dev-master",
         "swiftmailer/swiftmailer": "^6.0",
         "unicodeveloper/laravel-paystack": "^1.0",
         "yajra/laravel-datatables-oracle": "~8.0"
