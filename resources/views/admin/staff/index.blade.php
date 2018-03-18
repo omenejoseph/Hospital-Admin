@@ -84,8 +84,6 @@
         @endif
         @if($user->hasRole('employee'))
         <td>Employee</td>
-        @else
-        <td>notin</td>
         @endif
         <td>{{$user->dept->name}}</td>
         <td>

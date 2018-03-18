@@ -176,9 +176,9 @@
               </li>
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
+                <!-- <div class="pull-left">
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
+                </div> -->
                 <div class="pull-right">
                   <a href="{{route('logout')}}" 
                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -237,9 +237,9 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
+            <!-- <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
-            </span>
+            </span> -->
           </a>
           <!-- <ul class="treeview-menu">
             <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
@@ -248,12 +248,12 @@
         </li>
 
         <li class="treeview">
-          <a href="{{url('admin')}}">
+          <!-- <a href="{{url('admin')}}">
             <i class="fa fa-share"></i> <span>Administration</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
-          </a>
+          </a> -->
           <!-- <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
             <li>
@@ -355,9 +355,9 @@
         
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li><a href="{{url('/admin/')}}"><i class="fa fa-dashboard"></i> Home</a></li>
+        <!-- <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li> -->
       </ol>
     </section>
 
@@ -372,9 +372,9 @@
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b><a href="http://www.fb.com/softsed">Softsed-SimpleAdminLTE V 1.0</a></b> 
+      <b><a href="http://omenejoseph.com">This was created by Omene Joseph Ogheneruno (Web developer) Click Me to visit my portfolio</a></b> 
     </div>
-    <strong> <a href="http://almsaeedstudio.com">Almsaeed Studio V 2.3.11</a></strong> 
+    <strong> <a href="https://github.com/omenejoseph/Hospital-Admin">Feel free to fork my github repo!! click me to visit repo</a></strong> 
   </footer>
 
   <!-- Control Sidebar -->
